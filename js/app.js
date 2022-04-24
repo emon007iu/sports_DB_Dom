@@ -1,4 +1,6 @@
 const allPlayers = () => {
+    document.getElementById('player-container').innerHTML= '';
+    document.getElementById('spinner').style.display = 'block';
     const searchValue = document.getElementById('search-box');
     const searchcValueText = searchValue.value;
 
@@ -7,7 +9,7 @@ const allPlayers = () => {
     .then(response => response.json())
     .then((data) => showPlayerDetails(data.player))
 
-
+    document.getElementById('spinner').style.display = 'none';
     // searchValue.value = ''
 }
 
@@ -45,17 +47,22 @@ const details = (id) => {
 
 
 const setDetails = (info) => {
-    console.log(info);
+    console.log(info.strGender);
+
+    if(info.strGender == 'mail'){
+        document.getElementById('mail').style.display = 'block'
+        document.getElementById('femail').style.display = 'none'
+    }else{
+        document.getElementById('mail').style.display = 'none'
+        document.getElementById('femail').style.display = 'block'
+    }
+
     document.getElementById('details-container').innerHTML = `
         <div>
             <h1>Name: ${info.strPlayer}</h1>
         </div>
     `;
 }
-
-
-
-
 
 
 
